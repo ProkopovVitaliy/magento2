@@ -29,7 +29,7 @@ class AccountManagementRevokeCustomerTokenTest extends WebapiAbstract
      *
      * @magentoApiDataFixture Magento/Customer/_files/customer.php
      */
-    public function testRevokeCustomerToken()
+    public function testRevokeCustomerToken(): void
     {
         $token = $this->getCustomerToken();
         $serviceInfo = [
@@ -47,7 +47,7 @@ class AccountManagementRevokeCustomerTokenTest extends WebapiAbstract
         ];
 
         $requestData = [];
-        if (TESTS_WEB_API_ADAPTER === 'soap') {
+        if (TESTS_WEB_API_ADAPTER === self::ADAPTER_SOAP) {
             $requestData['customerId'] = 0;
         }
 
@@ -73,12 +73,12 @@ class AccountManagementRevokeCustomerTokenTest extends WebapiAbstract
     /**
      * Test token revoking for guest customer
      */
-   public function testRevokeCustomerTokenForGuestCustomer()
+    public function testRevokeCustomerTokenForGuestCustomer(): void
     {
         $this->expectException(Exception::class);
         $requestData = [];
 
-        if (TESTS_WEB_API_ADAPTER === 'soap') {
+        if (TESTS_WEB_API_ADAPTER === self::ADAPTER_SOAP) {
             $requestData['customerId'] = 0;
         }
 
